@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/152ca9cf76.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+    <title>BUNCH MOVIES</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav>
+                <div class="container">
+                    <div class="navbar">
+                        <div class="nav-right">
+                            <img src="../static/logo.png" alt="LOGO" width="100px">
+                            <ul class="nav-list">
+                                <li class="nav-link"><a href="/index/" class="nav-item">Home</a></li>
+                                <li class="nav-link">
+                                    <!-- <a href="#" class="nav-item">Movies</a> -->
+                                    <select name="gener" id="movie-drop" >
+                                        <option class="drop-item" value="movie" selected>Movie</option>
+                                        <option class="drop-item" value="action">Action</option>    
+                                        <option class="drop-item" value="sci-fi">Sci-Fi</option>
+                                        <option class="drop-item" value="horror">Horror</option>
+                                        <option class="drop-item" value="drama">Drama</option>
+                                        <option class="drop-item" value="crime">Crime</option>
+                                        <option class="drop-item" value="thriller">Thriller</option>
+                                    </select>
+                                </li>
+                                </li>
+                                <li class="nav-link">
+                                    <!-- <a href="#" class="nav-item">TV Shows</a> -->
+                                    <select name="tvshow"  id="movie-drop" >
+                                        <option class="drop-item" value="tvshow" selected><a href="#">TV Show</a></option>
+                                        <option class="drop-item" value="action"><a href="#">Action</a></option>
+                                        <option class="drop-item" value="sci-fi"><a href="#">Sci-Fi</a></option>
+                                        <option class="drop-item" value="horror"><a href="#">Horror</a></option>
+                                        <option class="drop-item" value="drama"><a href="#">Drama</a></option>
+                                        <option class="drop-item" value="crime"><a href="#">Crime</a></option>
+                                        <option class="drop-item" value="thriller"><a href="#">Thriller</a></option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="nav-left">
+                            <div class="search-box">
+                                <form action="/aftersearch/" method="POST">
+                                    <input type="text" name="movie" placeholder="What Do You Want To Watch?" class="search-text">
+                                    <input type="submit" id="search_movie" value="Search">
+                                </form>
+                            </div>
+                            <div class="l_s_btn">
+                                <a href="/logout" class="log_btn btn">LOG OUT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="sliderShow">
+                <div class="slides">
+                    <!-- Radio button -->
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
+
+                    <div class="slide s1">
+                        <h1 class="movie-title">The Meg</h1>
+                        <a href="#" class="movie-btn">Show Details</a>
+                    </div>
+                    <div class="slide s2">
+                        <h1 class="movie-title h1-2">Bloodshot</h1>
+                        <a href="#" class="movie-btn">Show Details</a>
+                    </div>
+                    <div class="slide s3">
+                        <h1 class="movie-title h1-3">Mission: Impossible</h1>
+                        <p>Rogue Nation</p>
+                        <a href="#" class="movie-btn">Show Details</a>
+                    </div>
+                    <div class="slide s4">
+                        <h1 class="movie-title h1-4">6 Undergrouund</h1>
+                        <a href="#" class="movie-btn">Show Details</a>
+                    </div>
+                </div>
+
+                <div class="navigation">
+                    <label for="radio1" class="bar"></label>
+                    <label for="radio2" class="bar"></label>
+                    <label for="radio3" class="bar"></label>
+                    <label for="radio4" class="bar"></label>
+                </div>
+            </div>
+        </header>
+    </main>
+
+    <section>
+        <div class="container">
+            <div class="heading-part">
+                <h2>Popular Movie</h2>
+                <a href="/afterShowMore/popular">Show More</a>
+            </div>
+            <div class="cards">
+                {% for movie in popular_movie.values() %}
+                <div class="card">
+                    <div class="card-img">
+                        <a href="/movie_detail/{{ movie['imdbID'] }}"><img src=" {{ movie['Poster'] }} "
+                            alt="joker"></a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ movie['Title'] }}</h3>
+                        <p class="card-text">{{ movie['Runtime'] }} | {{ movie['Genre'] }}</p>
+                        <p class="movie-year">{{ movie['Year'] }} | {{ movie['imdbRating']}}/10</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Thriller Movie/movie poster/Andhadhun (2018).jpg" alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Andhadhun</h3>
+                        <p class="card-text">139 MIN | CRIME, DRAMA</p>
+                        <p class="movie-year">2018 | 8.3/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Animated Movie/movie poster/Luxury Angry Birds Movie Download Hd.jpg"
+                            alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">The Angry Birds Movie</h3>
+                        <p class="card-text">97 MIN | ANIMATION, ADVENTURE</p>
+                        <p class="movie-year">2016 | 6.3/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Thriller Movie/movie poster/Parasite (2019) - IMDb.jpg" alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Parasite</h3>
+                        <p class="card-text">132 MIN | DRAMA, THRILLER</p>
+                        <p class="movie-year">2013 | 8.6/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Horror Movie/Movie poster/The Silence (2019) - IMDb.png" alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">The Silence</h3>
+                        <p class="card-text">90 MIN | HORROR, SCI-FI</p>
+                        <p class="movie-year">2019 | 5.3/10</p>
+                    </div>
+                </div> -->
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="heading-part">
+                <h2>TV Shows</h2>
+                <a href="/afterShowMore/tvShow">Show More</a>
+            </div>
+            <div class="cards">
+                {% for tvshow in popular_Tvshow.values() %}
+                <div class="card">
+                    <div class="card-img">
+                        <a href="/movie_detail/{{ tvshow['imdbID'] }}"><img src=" {{ tvshow['Poster'] }} "
+                            alt="joker"></a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ tvshow['Title'] }}</h3>
+                        <p class="card-text">{{ tvshow['totalSeasons'] }} Season | {{ tvshow['Genre'] }}</p>
+                        <p class="movie-year">({{ tvshow['Year'] }}) | {{ tvshow['imdbRating']}}/10</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Tv shows/tv shows poster/Breaking Bad.png" alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Breaking Bad </h3>
+                        <p class="card-text">62 EPISODES | CRIME, THRILLER</p>
+                        <p class="movie-year">(2008-2013) | 9.5/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Tv shows/tv shows poster/GOT.jpg" alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Game of Thrones </h3>
+                        <p class="card-text">73 EPISODES | ADVENTURE, DRAMA</p>
+                        <p class="movie-year">(2011-2019) | 7.3/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Tv shows/tv shows poster/mirzapur.jpg" alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Mirzapur</h3>
+                        <p class="card-text">19 EPISODES | CRIME, DRAMA</p>
+                        <p class="movie-year">(2018-) | 8.4/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Tv shows/tv shows poster/special ops.jpg" alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Special OPS</h3>
+                        <p class="card-text">8 EPISODES | ACTION, THRILLER</p>
+                        <p class="movie-year">(2020-) | 7.8/10</p>
+                    </div>
+                </div> -->
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="heading-part">
+                <h2>Coming Soon Movie</h2>
+                <a href="/afterShowMore/coming">Show More</a>
+            </div>
+            <div class="cards">
+                {% for up_movie in upcoming_movie.values() %}
+                <div class="card">
+                    <div class="card-img">
+                        <a href="/movie_detail/{{ up_movie['imdbID'] }}"><img src=" {{ up_movie['Poster'] }} "
+                            alt="joker"></a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ up_movie['Title'] }}</h3>
+                        <p class="card-text">{{ up_movie['Runtime'] }} | {{ up_movie['Genre'] }}</p>
+                        <p class="movie-year">{{ up_movie['Released'] }} | {{ up_movie['imdbRating']}}/10</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Comic Movie/movie poster/Avengers_ Infinity War - One Sheet Poster and Poster Clip Bundle.jpg"
+                            alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Avengers: Infinity War</h3>
+                        <p class="card-text">149 MIN | ACTION, SCI-FI</p>
+                        <p class="movie-year">2018 | 8.4/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Comic Movie/movie poster/Doctor Strange.jpg" alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Doctor Strange</h3>
+                        <p class="card-text">115 MIN | ACTION, FANTASY</p>
+                        <p class="movie-year">2016 | 7.5/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Comic Movie/movie poster/Here's Every Marvel Cinematic Universe Poster Ever, Starting With Iron Man.jpg"
+                            alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Thor: Ragnarok</h3>
+                        <p class="card-text">130 MIN | ACTION, COMEDY</p>
+                        <p class="movie-year">2017 | 7.9/10</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../static/Comic Movie/movie poster/Our Favorite Movie Posters from Marvel Studios - PrintKEG Blog.jpg"
+                            alt="joker">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Captain America: Civil War</h3>
+                        <p class="card-text">147 MIN | ACTION, SCI-FI</p>
+                        <p class="movie-year">2016 | 7.8/10</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="first">
+                <div class="footer-logo">
+                    <img src="../static/logo.png" alt="FOOTER_LOGO" >
+                </div>
+                <div class="about">
+                    <div class="col-1 col">
+                        <a href="/afterGener/action"><p class="link">ACTION</p></a>
+                        <a href="/afterGener/adventure"><p class="link">ADVENTURE</p></a>
+                        <a href="/afterGener/animation"><p class="link">ANIMATION</p></a>
+                    </div>
+                    <div class="col-2 col">
+                        <a href="/afterGener/drama"><p class="link">DRAMA</p></a>
+                        <a href="/afterGener/sci-fi"><p class="link">SCI-FI</p></a>
+                        <a href="/afterGener/thriller"><p class="link">THRILLER</p></a>
+                    </div>
+                    <div class="col-3 col">
+                        <a href="/afterGener/fantasy"><p class="link">FANTASY</p></a>
+                        <a href="/afterGener/crime"><p class="link">CRIME</p></a>
+                        <a href="/afterGener/comedy"><p class="link">COMEDY</p></a>
+                    </div>
+                </div>
+                <div class="social">
+                    <div class="social-link">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="second">
+                <p>Copyright &copy; BUNCH Movie. All rights reserved</p>
+                <p>Terms and Conditions | Privacy Policy</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

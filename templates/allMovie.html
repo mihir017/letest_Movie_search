@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/152ca9cf76.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='allMovie.css') }}">
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+    <title>BUNCH MOVIES</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav>
+                <div class="container">
+                    <div class="navbar">
+                        <div class="nav-right">
+                            <img src="../static/logo.png" alt="LOGO" width="100px">
+                            <ul class="nav-list">
+                                <li class="nav-link"><a href="/index/" class="nav-item">Home</a></li>
+                                <li class="nav-link">
+                                    <!-- <a href="#" class="nav-item">Movies</a> -->
+                                    <select name="Movie"  id="movie-drop" >
+                                        <option class="drop-item" value="movie" selected><a href="#">Movie</a></option>
+                                        <option class="drop-item" value="action"><a href="#">Action</a></option>
+                                        <option class="drop-item" value="sci-fi"><a href="#">Sci-Fi</a></option>
+                                        <option class="drop-item" value="horror"><a href="#">Horror</a></option>
+                                        <option class="drop-item" value="drama"><a href="#">Drama</a></option>
+                                        <option class="drop-item" value="crime"><a href="#">Crime</a></option>
+                                        <option class="drop-item" value="thriller"><a href="#">Thriller</a></option>
+                                    </select>
+                                </li>
+                                </li>
+                                <li class="nav-link">
+                                    <!-- <a href="#" class="nav-item">TV Shows</a> -->
+                                    <select name="tvshow"  id="movie-drop" >
+                                        <option class="drop-item" value="tvshow" selected><a href="#">TV Show</a></option>
+                                        <option class="drop-item" value="action"><a href="#">Action</a></option>
+                                        <option class="drop-item" value="sci-fi"><a href="#">Sci-Fi</a></option>
+                                        <option class="drop-item" value="horror"><a href="#">Horror</a></option>
+                                        <option class="drop-item" value="drama"><a href="#">Drama</a></option>
+                                        <option class="drop-item" value="crime"><a href="#">Crime</a></option>
+                                        <option class="drop-item" value="thriller"><a href="#">Thriller</a></option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="nav-left">
+                            <div class="search-box">
+                                <form action="/aftersearch/" method="POST">
+                                    <input type="text" placeholder="What Do You Want To Watch?" class="search-text">
+                                    <input type="submit" name="movie" id="search_movie" value="Search">
+                                </form>
+                            </div>
+                            <div class="l_s_btn">
+                                <a href="/logout" class="log_btn btn">LOG OUT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+    </main>
+
+    <section>
+        <div class="container">
+            {% if 'Tvshow1' in search_m.keys() %}
+            <div class="heading-part">
+                <h2>TvShows</h2>
+            </div>
+            <div class="cards">
+                {% for search_movie in search_m.values() %}
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="/movie_detail/{{ search_movie['imdbID'] }}"><img src=" {{ search_movie['Poster'] }} "
+                                alt="joker"></a>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ search_movie['Title'] }}</h3>
+                            <p class="card-text">{{ search_movie['totalSeasons'] }} | {{ search_movie['Genre'] }}</p>
+                            <p class="movie-year">({{ search_movie['Year'] }}) | {{ search_movie['imdbRating']}}/10</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% elif 'coming_movie1' in search_m.keys() %}
+            <div class="heading-part">
+                <h2>UpComing Movie</h2>
+            </div>
+            <div class="cards">
+                {% for search_movie in search_m.values() %}
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="/movie_detail/{{ search_movie['imdbID'] }}"><img src=" {{ search_movie['Poster'] }} "
+                                alt="joker"></a>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ search_movie['Title'] }}</h3>
+                            <p class="card-text">{{ search_movie['Runtime'] }} | {{ search_movie['Genre'] }}</p>
+                            <p class="movie-year">{{ search_movie['Released'] }} | {{ search_movie['imdbRating']}}/10</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% elif 'gener_movie1' in search_m.keys() %}
+            <div class="heading-part">
+                <h2>{{ title }} Movie</h2>
+            </div>
+            <div class="cards">
+                {% for search_movie in search_m.values() %}
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="/movie_detail/{{ search_movie['imdbID'] }}"><img src=" {{ search_movie['Poster'] }} "
+                                alt="joker"></a>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ search_movie['Title'] }}</h3>
+                            <p class="card-text">{{ search_movie['Runtime'] }} | {{ search_movie['Genre'] }}</p>
+                            <p class="movie-year">{{ search_movie['Released'] }} | {{ search_movie['imdbRating']}}/10</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% elif 'movie1' in search_m.keys() %}
+            <div class="heading-part">
+                <h2>Popular Movie</h2>
+            </div>
+            <div class="cards">
+                {% for search_movie in search_m.values() %}
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="/movie_detail/{{ search_movie['imdbID'] }}"><img src=" {{ search_movie['Poster'] }} "
+                                alt="joker"></a>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ search_movie['Title'] }}</h3>
+                            <p class="card-text">{{ search_movie['Runtime'] }} | {{ search_movie['Genre'] }}</p>
+                            <p class="movie-year">{{ search_movie['Year'] }} | {{ search_movie['imdbRating']}}/10</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="heading-part">
+                <h2>Searched Movie</h2>
+            </div>
+            <div class="cards">
+                {% for search_movie in search_m.values() %}
+                    <div class="card">
+                        <div class="card-img">
+                            <a href="/movie_detail/{{ search_movie['imdbID'] }}"><img src=" {{ search_movie['Poster'] }} "
+                                alt="joker"></a>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ search_movie['Title'] }}</h3>
+                            <p class="card-text">{{ search_movie['Runtime'] }} | {{ search_movie['Genre'] }}</p>
+                            <p class="movie-year">{{ search_movie['Year'] }} | {{ search_movie['imdbRating']}}/10</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <div class="first">
+                <div class="footer-logo">
+                    <img src="../static/logo.png" alt="FOOTER_LOGO" >
+                </div>
+                <div class="about">
+                    <div class="col-1 col">
+                        <a href="/afterGener/action"><p class="link">ACTION</p></a>
+                        <a href="/afterGener/adventure"><p class="link">ADVENTURE</p></a>
+                        <a href="/afterGener/animation"><p class="link">ANIMATION</p></a>
+                    </div>
+                    <div class="col-2 col">
+                        <a href="/afterGener/drama"><p class="link">DRAMA</p></a>
+                        <a href="/afterGener/sci-fi"><p class="link">SCI-FI</p></a>
+                        <a href="/afterGener/thriller"><p class="link">THRILLER</p></a>
+                    </div>
+                    <div class="col-3 col">
+                        <a href="/afterGener/fantasy"><p class="link">FANTASY</p></a>
+                        <a href="/afterGener/crime"><p class="link">CRIME</p></a>
+                        <a href="/afterGener/comedy"><p class="link">COMEDY</p></a>
+                    </div>
+                </div>
+                <div class="social">
+                    <div class="social-link">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="second">
+                <p>Copyright &copy; BUNCH Movie. All rights reserved</p>
+                <p>Terms and Conditions | Privacy Policy</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

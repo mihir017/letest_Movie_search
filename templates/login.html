@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css') }}">
+    <!-- <link rel="stylesheet" href="../static/login.css"> -->
+</head>
+
+<body>
+    <div class="movie-logo">
+        <img src="../static/logo.png" alt="logo">
+    </div>
+    <div class="container">
+        <div class="login-page">
+            <h1>Sign-In</h1>
+            <form method="POST" action="/afterlogin/" id="form">
+                <div class="input-1">
+                    <label for="email">Email Id</label>
+                    <input type="email" name="email" id="email">
+                </div>
+                <div class="input-1">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                    <a href="#">Forgot your password?</a>
+                </div>
+                <input type="submit" value="Sign-In" id="sign-btn">
+                <p style="color: green;font-family: Arial, Helvetica, sans-serif">{{e_p_msg}}</p>
+                <p id="condition">By continuing, you agree to Amazon's <span>Conditions of Use</span> and <span>Privacy Notice</span>.</p>
+                <div class="new-people">
+                    <p class="new">New to Bunch Movie</p>
+                    <a href="/register">Create your Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright &copy; BUNCH Movie. All rights reserved</p>
+    </footer>
+</body>
+
+</html>

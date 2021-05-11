@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css') }}">
+    <!-- <link rel="stylesheet" href="../static/login.css"> -->
+</head>
+
+<body>
+    <div class="movie-logo">
+        <img src="../static/logo.png" alt="logo">
+    </div>
+    <div class="container">
+        <div class="login-page">
+            <h1>Create Account</h1>
+            <form method="POST" action="/aftersignup/" id="form">
+                <div class="input-1">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="input-1">
+                    <label for="email">Email Id</label>
+                    <input type="email" name="email" id="email">
+                    <p style="color: green; font-family: Arial, Helvetica, sans-serif;">{{e_msg}}</p>
+                </div>
+                <div class="input-1">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                    <p style="color: green; font-family: Arial, Helvetica, sans-serif;">{{p_msg}}</p>
+                </div>
+                <div class="input-1">
+                    <label for="r-password">Re-enter Password</label>
+                    <input type="password" name="r_password" id="r-password">
+                    <p style="color: green; font-family: Arial, Helvetica, sans-serif;">{{r_p_msg}}</p>
+                </div>
+                <input type="submit" value="create your Account" id="sign-btn">
+                <p id="condition">By creating an account, you agree to Bunch Movie <span>Conditions of Use</span> and <span>Privacy Notice</span>.</p>
+                <div class="new-people">
+                    <p class="new">Already have an account? <a href="/login" id="c-a">Sign-In</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright &copy; BUNCH Movie. All rights reserved</p>
+    </footer>
+</body>
+
+</html>

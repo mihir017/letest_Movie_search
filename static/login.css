@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Rajdhani&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Teko&family=Unica+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rajdhani', sans-serif;
+}
+body {
+    background: #3D3838;
+}
+img{
+    width: 100%;
+    padding-top: 10px;
+}
+.movie-logo {
+    width: 100px;
+    margin: auto;
+}
+.container {
+    width: 400px;
+    background: white;
+    margin: auto;
+    margin-top: 20px;
+}
+.container .login-page{
+    padding: 20px;
+    padding-bottom: 40px;
+}
+h1{
+    text-align: center;
+    margin-bottom: 10px;
+}
+#form label,input{
+    display: block;
+}
+#form .input-1{
+    margin: 10px 0;
+}
+label{
+    margin-bottom: 3px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+}
+input{
+    width: 350px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    border: 2px solid rgb(187, 186, 186);
+    border-radius: 10px;
+    color: #3D3838;
+    font-family: 'Rajdhani', sans-serif;
+    /* box-shadow: 0px 2px 3px rgba(0, 0, 0, .2); */
+}
+.input-1 a{
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: green;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+#sign-btn {
+    box-shadow: none;
+    border: none;
+    background-color: green;
+    font-weight: bold;
+    color: #DDDADA;
+    font-size: 18px;
+    margin-top: 20px;
+}
+#sign-btn:hover {
+    background-color: rgba(0, 128, 0, 0.822);
+    cursor: pointer;
+}
+#condition {
+    margin-top: 10px;
+    font-size: 18px;
+}
+span{
+    color: green;
+    font-weight: bold;
+}
+.new-people {
+    margin-top: 30px;
+}
+.new-people p{
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.new-people a{
+    width: 350px;
+    background: #3D3838;
+    text-decoration: none;
+    padding: 10px 108px;
+    border-radius: 8px;
+    color: #DDDADA;
+}
+#c-a {
+    background: none;
+    padding: 0;
+    color: green;
+    font-weight: bold;
+}
+
+footer p{
+    text-align: center;
+    color: #DDDADA;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+    /* font-family: 'Krona One', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Passion One', cursive;
+    font-family: 'Teko', sans-serif; */
